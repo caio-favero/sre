@@ -1,11 +1,19 @@
 version: "3"
 services:
+
   rancher:
-    image: rancher/rancher:stable
+    image: rancher/rancher-agent:v2.3.5
     container_name: rancher
     ports:
       - 8443:443
     user: "104"
+    environment: 
+      ETCD: "true"
+      WORKER: "true"
+      CONTROL: "true"
+      CATTLE_TOKEN: "fn5nspqrr8cxwc7jgd7zwzct7zmd8vhs7r2qp4z9tznfqg9qbl9mxd" 
+      CATTLE_SERVER: "http://localhost:8443"
+      CATTLE_CA_CHECKSUM: "c4718aa417bf3ff9e7e09be5f80455a7b1960ca31ab8dd2ff20f95767469fca9" 
 
   wordpress:
     image: wordpress:latest
